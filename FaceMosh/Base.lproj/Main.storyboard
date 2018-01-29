@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pLV-I6-Xm0">
+                                <rect key="frame" x="219" y="601" width="140" height="46"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="46" id="QZp-iA-BYV"/>
+                                    <constraint firstAttribute="width" constant="140" id="nuH-dP-Yfd"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="watchNowAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="DS4-4n-2yI"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zRD-sF-Zvm">
+                                <rect key="frame" x="15" y="35" width="46" height="46"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="46" id="3vg-Jq-wfW"/>
+                                    <constraint firstAttribute="height" constant="46" id="v6f-RW-3rU"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <state key="normal" title="✕"/>
+                                <connections>
+                                    <action selector="cancelAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="y48-35-GI8"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9sE-xM-Fr8">
+                                <rect key="frame" x="314" y="35" width="46" height="46"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="46" id="Cu6-MO-pN8"/>
+                                    <constraint firstAttribute="height" constant="46" id="phL-2O-6bV"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <connections>
+                                    <action selector="shareAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Fr7-Br-qce"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IQn-zE-Rti">
+                                <rect key="frame" x="15" y="601" width="140" height="46"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="140" id="QTn-Qk-pUi"/>
+                                    <constraint firstAttribute="height" constant="46" id="h80-Hm-XRf"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="saveAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="2TC-AX-38E"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="9sE-xM-Fr8" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="15" id="5PO-pF-cx2"/>
+                            <constraint firstItem="zRD-sF-Zvm" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="15" id="5bs-xW-ItP"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="pLV-I6-Xm0" secondAttribute="trailing" constant="16" id="7wa-Sr-M9y"/>
+                            <constraint firstItem="IQn-zE-Rti" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="15" id="Jdc-iF-oZQ"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="pLV-I6-Xm0" secondAttribute="bottom" constant="20" id="N8h-fm-7LJ"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="IQn-zE-Rti" secondAttribute="bottom" constant="20" id="SJM-Fv-Xbd"/>
+                            <constraint firstItem="zRD-sF-Zvm" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="15" id="WYr-yC-KSe"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="9sE-xM-Fr8" secondAttribute="trailing" constant="15" id="aPM-cP-yg4"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                    </view>
+                    <connections>
+                        <outlet property="cancelButton" destination="zRD-sF-Zvm" id="Y9R-YJ-hSN"/>
+                        <outlet property="saveButton" destination="IQn-zE-Rti" id="NXj-M1-Ao5"/>
+                        <outlet property="shareButton" destination="9sE-xM-Fr8" id="cHc-VI-oaP"/>
+                        <outlet property="watchNowButton" destination="pLV-I6-Xm0" id="WFS-G2-BbQ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="32.799999999999997" y="31.934032983508249"/>
+        </scene>
+    </scenes>
+</document>
