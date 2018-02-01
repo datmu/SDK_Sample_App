@@ -147,18 +147,6 @@
         [weakSelf hideDeleteButton];
         [weakSelf.item setEnabled:NO];
     }];
-    
-    
-    /*
-    for (NSIndexPath* path in indices) {
-        
-    }
-     */
-    /*
-    [[ImageStore sharedStore] deleteItemsAtIndexPaths:[self.imageGallery indexPathsForSelectedItems] completion:^(BOOL finished) {
-     
-    }];
-     */
 }
 
 - (UIView*)actionContainer {
