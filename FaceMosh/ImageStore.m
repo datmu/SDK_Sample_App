@@ -86,7 +86,20 @@
             [self.activityIndicator removeFromSuperview];
         });
     });
-    
+}
+
+- (NSArray<UIImage*>*)imagesAtIndexPaths:(NSArray<NSIndexPath*>*)indexPaths {
+    NSMutableArray* util = [NSMutableArray new];
+    for (NSIndexPath* path in indexPaths) {
+        [util addObject:@(path.row)];
+    }
+    NSMutableArray* output = [NSMutableArray new];
+    for (int i = 0; i < self.images.count; i++) {
+        if ([util containsObject:@(i)]) {
+            [output addObject:self.images[i]];
+        }
+    }
+    return output.copy;
 }
 
 - (UIImage*)imageAtIndexPath:(NSIndexPath*)path {

@@ -12,7 +12,7 @@
 @interface ImageStore : NSObject
 
 + (ImageStore*)sharedStore;
-
+- (NSArray<UIImage*>*)imagesAtIndexPaths:(NSArray<NSIndexPath*>*)indexPaths;
 - (UIImage*)imageAtIndexPath:(NSIndexPath*)path;
 - (NSInteger)numberOfImages;
 - (void)saveImage:(UIImage*)image completion:(void (^)(BOOL success))completion;

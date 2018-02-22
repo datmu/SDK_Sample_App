@@ -14,11 +14,22 @@
 @property (nonatomic) UIView* actionContainer;
 @property (nonatomic) UICollectionView* imageGallery;
 @property (nonatomic) UIBarButtonItem* item;
+@property (nonatomic) UIBarButtonItem* detailItem;
 @property (nonatomic) DabKickWatchTogetherButton *mainWatchButton;
+@property (nonatomic, strong) ATransitionDelegate *customTransitionDelegate;
+@property (nonatomic, strong) UILabel* detailLabel;
 
 @end
 
 @implementation GalleryViewController
+
+- (ATransitionDelegate *)customTransitionDelegate
+{
+    if (_customTransitionDelegate == nil)
+        _customTransitionDelegate = [[ATransitionDelegate alloc] init];
+    
+    return _customTransitionDelegate;
+}
 
 - (DabKickWatchTogetherButton*)mainWatchButton {
     if (!_mainWatchButton) {
@@ -61,9 +72,18 @@
     [navBar setTintColor:[UIColor litRedColor]];
     UINavigationItem* navItem = [[UINavigationItem alloc] initWithTitle:NSLocalizedString(@"Image Gallery", nil)];
     navItem.leftBarButtonItem = doneItem;
-    navItem.rightBarButtonItem = self.item;
+    navItem.rightBarButtonItems = @[self.item, self.detailItem];
     navBar.items = @[navItem];
     [self.view addSubview:navBar];
+}
+
+- (UIBarButtonItem*)detailItem {
+    if (!_detailItem) {
+        _detailItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Show", nil) style:UIBarButtonItemStylePlain target:self action:@selector(viewAction)];
+        _detailItem.enabled = false;
+        [self hideDeleteButton];
+    }
+    return _detailItem;
 }
 
 - (CGRect)cvFrame {
@@ -100,9 +120,11 @@
 - (void)handleSelection {
     if ([self.imageGallery indexPathsForSelectedItems].count) {
         self.item.enabled = true;
+        self.detailItem.enabled = true;
         [self showDeleteButton];
     } else {
         self.item.enabled = false;
+        self.detailItem.enabled = false;
         [self hideDeleteButton];
     }
 }
@@ -123,7 +145,9 @@
     [super viewDidLoad];
     [self initNavBar];
     [self.view addSubview:self.imageGallery];
+    [self initIndicatorLabel];
     // Do any additional setup after loading the view.
+    [self handleLabelAlpha];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -133,6 +157,15 @@
 
 - (void)reloadCV {
     [self.imageGallery reloadData];
+}
+
+- (void)viewAction {
+    PhotosViewController* photosVC = [[PhotosViewController alloc] init];
+    NSArray<NSIndexPath*>* indices = [self.imageGallery indexPathsForSelectedItems];
+    photosVC.images = [[ImageStore sharedStore] imagesAtIndexPaths:indices];
+    photosVC.transitioningDelegate = self.customTransitionDelegate;
+    photosVC.modalPresentationStyle = UIModalPresentationFullScreen;
+    [self presentViewController:photosVC animated:true completion:nil];
 }
 
 - (void)deleteAction {
@@ -145,7 +178,9 @@
     } completion:^(BOOL finished) {
         [store saveImagesToDiskWithCompletion:nil];
         [weakSelf hideDeleteButton];
+        [weakSelf.detailItem setEnabled:NO];
         [weakSelf.item setEnabled:NO];
+        [weakSelf handleLabelAlpha];
     }];
 }
 
@@ -160,12 +195,49 @@
         button.backgroundColor = [UIColor clearColor];
         [button setTitle:NSLocalizedString(@"WATCH TOGETHER", nil) forState:UIControlStateNormal];
         [button.titleLabel setFont:[UIFont systemFontOfSize:15 weight:UIFontWeightSemibold]];
-        [button setTitleColor:[UIColor litRedColor] forState:UIControlStateNormal    ];
+        [button setTitleColor:[UIColor litRedColor] forState:UIControlStateNormal];
         [_actionContainer addSubview:button];
         [button addTarget:self action:@selector(watchAction) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:_actionContainer];
     }
     return _actionContainer;
+}
+
+- (void)initIndicatorLabel {
+    UILabel* label = [[UILabel alloc] initWithFrame:CGRectMake(55, 160, self.view.frame.size.width - 110, 300)];
+    label.textAlignment = NSTextAlignmentCenter;
+    label.textColor = [UIColor darkGrayColor];
+    label.numberOfLines = 0;
+    label.font = [UIFont systemFontOfSize:15 weight:UIFontWeightSemibold];
+    label.text = NSLocalizedString(@"There are no photos saved to your gallery right now.", nil);
+    _detailLabel = label;
+    label.alpha = 0;
+    [self.view addSubview:label];
+}
+
+- (void)handleLabelAlpha {
+    GalleryViewController* __weak weakSelf = self;
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+        int numberOfImages = [ImageStore sharedStore].numberOfImages;
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (numberOfImages == 0)
+                weakSelf.detailLabel.alpha = 1;
+            else
+                weakSelf.detailLabel.alpha = 0;
+        });
+    });
+}
+
+- (CGRect)transitionStartFrame   {
+    NSArray<NSIndexPath*>* indices = [[self.imageGallery indexPathsForSelectedItems] sortedArrayUsingSelector:@selector(compare:)];
+    UICollectionViewLayoutAttributes *attributes = [self.imageGallery layoutAttributesForItemAtIndexPath:indices[0]];
+    CGRect output = CGRectMake(attributes.frame.origin.x + 8, attributes.frame.origin.y + 8,
+                               attributes.frame.size.width - 16, attributes.frame.size.height - 16);
+    return CGRectOffset(output, 0, self.imageGallery.frame.origin.y - self.imageGallery.contentOffset.y);
+}
+
+- (CGSize)collectionView:(UICollectionView*)cv layout:(nonnull UICollectionViewLayout *)collectionViewLayout referenceSizeForFooterInSection:(NSInteger)section {
+    return CGSizeMake(self.view.frame.size.width, 100);
 }
 
 - (void)hideDeleteButton {
@@ -189,6 +261,10 @@
         NSArray<DabKickContent>* sample = (NSArray<DabKickContent>*)@[@"Mustache Pics"];
         [loader send:sample];
     }
+}
+
+- (UIImage*)transitionImage {
+    return [[ImageStore sharedStore] imagesAtIndexPaths:[self.imageGallery indexPathsForSelectedItems]][0];
 }
 
 - (void)dabKickLiveSession:(DabKickLiveSessionSdk * _Nonnull)liveSessionInstance contentForCategory:(NSString * _Nonnull)title offset:(NSUInteger)offset contentType:(DabKickContentType)contentType loader:(id <DabKickContentLoading> _Nonnull)loader {

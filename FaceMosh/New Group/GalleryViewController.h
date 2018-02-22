@@ -10,7 +10,13 @@
 #import <DabKickLiveSessionSdk/DabKickLiveSessionSdk.h>
 #import "ImageStore.h"
 #import "ImageGalleryCVC.h"
+#import "PhotosViewController.h"
+#import "ATransitionDelegate.h"
+#import "ATransitionAnimator.h"
 
 @interface GalleryViewController : UIViewController
+
+- (CGRect)transitionStartFrame;
+- (UIImage*)transitionImage;
 
 @end

@@ -43,11 +43,72 @@
 @property (nonatomic) UIPinchGestureRecognizer* pinchGesture;
 @property (nonatomic) UIRotationGestureRecognizer* rotationGesture;
 
+// TUTORIAL
+
+@property (nonatomic) UIView* tutorialView;
+
 @end
 
 @implementation ViewController
 
 @synthesize overlayView;
+
+- (UIView*)tutorialView {
+    if (!_tutorialView) {
+        _tutorialView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 200, 60)];
+        _tutorialView.backgroundColor = [[UIColor litRedColor] colorWithAlphaComponent:0.8];
+        CGFloat cornerRadius = 11.0f;
+        
+        UILabel* tutorialLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, _tutorialView.bounds.size.width, _tutorialView.bounds.size.height - cornerRadius)];
+        tutorialLabel.font = [UIFont systemFontOfSize:12 weight:UIFontWeightSemibold];
+        tutorialLabel.textColor = [UIColor blackColor];
+        tutorialLabel.textAlignment = NSTextAlignmentCenter;
+        tutorialLabel.text = NSLocalizedString(@"Tap below to take a picture!", nil);
+        [_tutorialView addSubview:tutorialLabel];
+        UIBezierPath* path = [UIBezierPath new];
+        
+        CGFloat width = _tutorialView.frame.size.width;
+        CGFloat height = _tutorialView.frame.size.height - cornerRadius;
+        [path moveToPoint:CGPointMake(5, 0)];
+        [path addLineToPoint:CGPointMake(width - cornerRadius, 0)];
+        [path addQuadCurveToPoint:CGPointMake(width, cornerRadius) controlPoint:CGPointMake(width, 0)];
+        [path addLineToPoint:CGPointMake(width, height - cornerRadius)];
+        [path addQuadCurveToPoint:CGPointMake(width - cornerRadius, height) controlPoint:CGPointMake(width, height)];
+        [path addLineToPoint:CGPointMake(width / 2.0 + cornerRadius, height)];
+        [path addLineToPoint:CGPointMake(width / 2.0, height + cornerRadius)];
+        [path addLineToPoint:CGPointMake(width / 2.0 - cornerRadius, height)];
+        [path addLineToPoint:CGPointMake(cornerRadius, height)];
+        [path addQuadCurveToPoint:CGPointMake(0, height - cornerRadius) controlPoint:CGPointMake(0, height)];
+        [path addLineToPoint:CGPointMake(0, cornerRadius)];
+        [path addQuadCurveToPoint:CGPointMake(cornerRadius, 0) controlPoint:CGPointZero];
+        [path closePath];
+        CAShapeLayer* mask = [CAShapeLayer new];
+        mask.path = path.CGPath;
+        _tutorialView.layer.mask = mask;
+        
+        _tutorialView.layer.position = CGPointMake(CGRectGetMidX(self.view.bounds), CGRectGetMinY(self.pickerContrainer.frame) - 30);
+    }
+    return _tutorialView;
+}
+
+- (NSString*)tutorialKey {
+    return @"tutorialShownOnce";
+}
+
+- (NSString*)tutorialValue {
+    return  @"✔︎";
+}
+
+- (void)showTutorial {
+    if (![[NSUserDefaults standardUserDefaults] valueForKey:[self tutorialKey]]) {
+        self.tutorialView.alpha = 0;
+        [self.view addSubview:self.tutorialView];
+        ViewController* __weak weakSelf = self;
+        [UIView animateWithDuration:0.2 animations:^{
+            weakSelf.tutorialView.alpha = 1;
+        }];
+    }
+}
 
 - (void)configureSaveButton {
     [self.saveButton setTitle:NSLocalizedString(@"Save Photo", nil) forState:UIControlStateNormal];
@@ -89,7 +150,6 @@
             [loader send:contentArray];
         }
     }
-    
 }
 
 - (void)initShareButton {
@@ -110,6 +170,21 @@
     self.cancelButton.layer.borderColor = [UIColor litRedColor].CGColor;
     self.cancelButton.layer.borderWidth = 2.0f;
     self.cancelButton.alpha = 0;
+}
+
+- (void)initDoubleTap {
+    UITapGestureRecognizer* doubleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(swapCameraOrientation)];
+    [doubleTap setNumberOfTapsRequired:2];
+    [self.view setUserInteractionEnabled:true];
+    [self.view addGestureRecognizer:doubleTap];
+}
+
+- (void)swapCameraOrientation {
+    if (self.aController.cameraDevice == UIImagePickerControllerCameraDeviceRear) {
+        self.aController.cameraDevice = UIImagePickerControllerCameraDeviceFront;
+    } else {
+        self.aController.cameraDevice = UIImagePickerControllerCameraDeviceRear;
+    }
 }
 
 - (void)configureDefaultView {
@@ -184,12 +259,14 @@
 }
 
 - (void)initGalleryButton {
-    UIButton* button = [[UIButton alloc] initWithFrame:CGRectMake(15, 15, 146, 46)];
+    UIButton* button = [[UIButton alloc] initWithFrame:CGRectMake(15, 15, 44, 44)];
     button.layer.borderWidth = 2.0f;
-    button.layer.borderColor = [UIColor litRedColor].CGColor;
+    button.layer.borderColor = [UIColor clearColor].CGColor;
     button.layer.cornerRadius = 23.5f;
-    [button setBackgroundColor:[[UIColor whiteColor] colorWithAlphaComponent:0.95]];
-    [button setTitle:NSLocalizedString(@"Gallery", nil) forState:UIControlStateNormal];
+    [button setBackgroundColor:[[UIColor whiteColor] colorWithAlphaComponent:0]];
+    button.tintColor = [UIColor litRedColor];
+    UIImage* someImage = [[UIImage imageNamed:@"Gallery"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+    [button setBackgroundImage:someImage forState:UIControlStateNormal];
     [button setTitleColor:[UIColor litRedColor] forState:UIControlStateNormal];
     [self.view addSubview:button];
     self.galleryButton = button;
@@ -398,7 +475,7 @@
 - (void)showOverlayPicker:(UIView*)container {
     UIView* blurView = [UIView new]; //[[UIVisualEffectView alloc] initWithEffect:[UIBlurEffect effectWithStyle:UIBlurEffectStyleExtraLight]];
     blurView.backgroundColor = [UIColor clearColor];
-    blurView.frame =  CGRectMake(0, self.view.frame.size.height - 100, self.view.frame.size.width, 100);
+    blurView.frame =  CGRectMake(0, self.view.frame.size.height - 150, self.view.frame.size.width, 100);
     blurView.alpha = 1.0;
     CGRect cvFrame = [blurView bounds];
     self.aPicker.frame = cvFrame;
@@ -425,12 +502,6 @@
 }
 
 - (void)setupImageView {
-    /*
-    CGFloat height = self.view.frame.size.height;
-    CGFloat scale = DEFAULT_RATIO;
-    CGFloat width = self.originalFrame.size.width * scale;
-    CGFloat xOffset = - (width - self.view.frame.size.width) / 2.0;
-     */
     self.imageViewer.frame = self.view.bounds;
     self.imageViewer.contentMode = UIViewContentModeScaleAspectFill;
     [self.view addSubview:self.imageViewer];
@@ -481,25 +552,29 @@ bool buttonsMoved = false;
     }];
 }
 
+- (void)hideTutorialView {
+    ViewController* __weak weakSelf = self;
+    if (self.tutorialView.alpha) {
+        [[NSUserDefaults standardUserDefaults] setValue:[self tutorialValue] forKey:[self tutorialKey]];
+        [UIView animateWithDuration:0.2 animations:^{
+            weakSelf.tutorialView.alpha = 0;
+        }];
+    }
+}
+
 - (void) imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
     NSString* imageKey = @"UIImagePickerControllerOriginalImage";
     UIImage* image = [info valueForKey:imageKey];
     if (image) {
-        image = [UIImage imageWithCGImage:image.CGImage scale:image.scale orientation:UIImageOrientationLeftMirrored];
+        if (self.aController.cameraDevice == UIImagePickerControllerCameraDeviceFront)
+            image = [UIImage imageWithCGImage:image.CGImage scale:image.scale orientation:UIImageOrientationLeftMirrored];
         self.imageViewer.image = image;
-        
+        [self hideTutorialView];
         if (!self.imageViewer.superview)
             [self.view addSubview:self.imageViewer];
         
-        // [self.view bringSubviewToFront:self.translationView];
-        // self.translationView.layer.transform = _currentTransform;
-        /*
-        UIImage* newImage = [self snapPicture];
-        self.imageViewer.image = newImage;
-        [self configureImageView];
-         */
         self.imageViewer.image = [self captureScreenshot];
-        [self configureImageView];
+        [self performSelector:@selector(configureImageView) withObject:nil afterDelay:1];
     }
 }
 
@@ -631,6 +706,7 @@ bool buttonsMoved = false;
     [self initCamera];
     [self initPhotoButton];
     [self showOverlayPicker:overlayView];
+    [self initDoubleTap];
     [self configureWatchNowButton];
     [self initWatchTogetherButton];
     [self initCancelButton];
@@ -638,6 +714,7 @@ bool buttonsMoved = false;
     [self initTranslationView];
     [self configureSaveButton];
     [self initGalleryButton];
+    [self showTutorial];
 }
 
 - (void)didReceiveMemoryWarning {

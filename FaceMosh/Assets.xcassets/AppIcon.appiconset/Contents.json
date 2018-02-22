@@ -7,8 +7,9 @@
       "scale" : "2x"
     },
     {
-      "idiom" : "iphone",
       "size" : "20x20",
+      "idiom" : "iphone",
+      "filename" : "FM Logo 60pt.png",
       "scale" : "3x"
     },
     {
@@ -48,8 +49,9 @@
       "scale" : "3x"
     },
     {
-      "idiom" : "ipad",
       "size" : "20x20",
+      "idiom" : "ipad",
+      "filename" : "FM Logo 20pt.png",
       "scale" : "1x"
     },
     {
@@ -101,8 +103,9 @@
       "scale" : "2x"
     },
     {
-      "idiom" : "ios-marketing",
       "size" : "1024x1024",
+      "idiom" : "ios-marketing",
+      "filename" : "main-logo.png",
       "scale" : "1x"
     }
   ],

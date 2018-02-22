@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import <DabKickLiveSessionSdk/DabKickLiveSessionSdk.h>
+#import "LandingViewController.h"
 
 @interface AppDelegate ()
 
@@ -22,6 +23,10 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    if (![[NSUserDefaults standardUserDefaults] valueForKey:@"agree_button_tapped"]) {
+        self.window.rootViewController = [LandingViewController new];
+        [self.window makeKeyAndVisible];
+    }
     return YES;
 }
 

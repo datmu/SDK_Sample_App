@@ -9,6 +9,14 @@
 /* Begin PBXBuildFile section */
 		3B7AA1E1015DF19486A3ECAB /* libPods-FaceMosh.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D97E487BF78A37611EA741BA /* libPods-FaceMosh.a */; };
 		3DBBB708989C85B362DD2912 /* libPods-FaceMoshUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FF8A36BC903E92CD86991ED3 /* libPods-FaceMoshUITests.a */; };
+		580AECDD203509CF0047A855 /* LandingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 580AECDB203509CE0047A855 /* LandingViewController.m */; };
+		580AECDE203509CF0047A855 /* LandingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 580AECDC203509CE0047A855 /* LandingViewController.xib */; };
+		580AECE120350CAA0047A855 /* TransitionAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = 580AECE020350CAA0047A855 /* TransitionAnimator.m */; };
+		587E4AC220351A350044658B /* TermsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 587E4AC120351A350044658B /* TermsViewController.m */; };
+		58B4DE0F202CD60B009EF15E /* PhotosViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58B4DE0E202CD60B009EF15E /* PhotosViewController.m */; };
+		58B4DE12202CD84E009EF15E /* IDViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58B4DE11202CD84E009EF15E /* IDViewController.m */; };
+		58B4DE16202CE876009EF15E /* ATransitionDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 58B4DE15202CE876009EF15E /* ATransitionDelegate.m */; };
+		58B4DE19202CE8FB009EF15E /* ATransitionAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = 58B4DE18202CE8FB009EF15E /* ATransitionAnimator.m */; };
 		58CDBAB5201E72CC0066D639 /* GalleryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58CDBAB4201E72CC0066D639 /* GalleryViewController.m */; };
 		58CDBAB8201E73850066D639 /* ImageStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 58CDBAB7201E73850066D639 /* ImageStore.m */; };
 		58CDBABB201E7E940066D639 /* ImageGalleryCVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 58CDBABA201E7E940066D639 /* ImageGalleryCVC.m */; };
@@ -46,6 +54,22 @@
 
 /* Begin PBXFileReference section */
 		435811EC302C44F191365BC7 /* Pods-FaceMoshTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FaceMoshTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-FaceMoshTests/Pods-FaceMoshTests.release.xcconfig"; sourceTree = "<group>"; };
+		580AECDA203509CE0047A855 /* LandingViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LandingViewController.h; sourceTree = "<group>"; };
+		580AECDB203509CE0047A855 /* LandingViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LandingViewController.m; sourceTree = "<group>"; };
+		580AECDC203509CE0047A855 /* LandingViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LandingViewController.xib; sourceTree = "<group>"; };
+		580AECDF20350CAA0047A855 /* TransitionAnimator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TransitionAnimator.h; sourceTree = "<group>"; };
+		580AECE020350CAA0047A855 /* TransitionAnimator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TransitionAnimator.m; sourceTree = "<group>"; };
+		587E4AC020351A2E0044658B /* TermsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TermsViewController.h; sourceTree = "<group>"; };
+		587E4AC120351A350044658B /* TermsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TermsViewController.m; sourceTree = "<group>"; };
+		58B4DE0D202CD60B009EF15E /* PhotosViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PhotosViewController.h; sourceTree = "<group>"; };
+		58B4DE0E202CD60B009EF15E /* PhotosViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PhotosViewController.m; sourceTree = "<group>"; };
+		58B4DE10202CD84E009EF15E /* IDViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IDViewController.h; sourceTree = "<group>"; };
+		58B4DE11202CD84E009EF15E /* IDViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IDViewController.m; sourceTree = "<group>"; };
+		58B4DE14202CE876009EF15E /* ATransitionDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ATransitionDelegate.h; sourceTree = "<group>"; };
+		58B4DE15202CE876009EF15E /* ATransitionDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ATransitionDelegate.m; sourceTree = "<group>"; };
+		58B4DE17202CE8FB009EF15E /* ATransitionAnimator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ATransitionAnimator.h; sourceTree = "<group>"; };
+		58B4DE18202CE8FB009EF15E /* ATransitionAnimator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ATransitionAnimator.m; sourceTree = "<group>"; };
+		58B4DE1D20324B0A009EF15E /* FaceMosh.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FaceMosh.entitlements; sourceTree = "<group>"; };
 		58CDBAB3201E72CC0066D639 /* GalleryViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GalleryViewController.h; sourceTree = "<group>"; };
 		58CDBAB4201E72CC0066D639 /* GalleryViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GalleryViewController.m; sourceTree = "<group>"; };
 		58CDBAB6201E73850066D639 /* ImageStore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImageStore.h; sourceTree = "<group>"; };
@@ -137,6 +161,61 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		580AECE2203511250047A855 /* New Group2 */ = {
+			isa = PBXGroup;
+			children = (
+				587E4AC020351A2E0044658B /* TermsViewController.h */,
+				587E4AC120351A350044658B /* TermsViewController.m */,
+				580AECDF20350CAA0047A855 /* TransitionAnimator.h */,
+				580AECE020350CAA0047A855 /* TransitionAnimator.m */,
+				580AECDA203509CE0047A855 /* LandingViewController.h */,
+				580AECDB203509CE0047A855 /* LandingViewController.m */,
+				580AECDC203509CE0047A855 /* LandingViewController.xib */,
+				58D981B3200FCAB500C8A0FA /* ViewController.h */,
+				58D981B4200FCAB500C8A0FA /* ViewController.m */,
+			);
+			path = "New Group2";
+			sourceTree = "<group>";
+		};
+		58B4DE1A202CE901009EF15E /* Transition */ = {
+			isa = PBXGroup;
+			children = (
+				58B4DE14202CE876009EF15E /* ATransitionDelegate.h */,
+				58B4DE15202CE876009EF15E /* ATransitionDelegate.m */,
+				58B4DE17202CE8FB009EF15E /* ATransitionAnimator.h */,
+				58B4DE18202CE8FB009EF15E /* ATransitionAnimator.m */,
+			);
+			path = Transition;
+			sourceTree = "<group>";
+		};
+		58B4DE1B202CEC19009EF15E /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+				58CDBAB9201E7E940066D639 /* ImageGalleryCVC.h */,
+				58CDBABA201E7E940066D639 /* ImageGalleryCVC.m */,
+				58CDBAB3201E72CC0066D639 /* GalleryViewController.h */,
+				58CDBAB4201E72CC0066D639 /* GalleryViewController.m */,
+				58B4DE0D202CD60B009EF15E /* PhotosViewController.h */,
+				58B4DE0E202CD60B009EF15E /* PhotosViewController.m */,
+				58B4DE10202CD84E009EF15E /* IDViewController.h */,
+				58B4DE11202CD84E009EF15E /* IDViewController.m */,
+			);
+			path = "New Group";
+			sourceTree = "<group>";
+		};
+		58B4DE1C202E6BA0009EF15E /* New Group1 */ = {
+			isa = PBXGroup;
+			children = (
+				58D982282010148B00C8A0FA /* OverlayPicker.h */,
+				58D982292010148B00C8A0FA /* OverlayPicker.m */,
+				58D9822B20101D4F00C8A0FA /* CVLayout.h */,
+				58D9822C20101D4F00C8A0FA /* CVLayout.m */,
+				58D9822E201152BC00C8A0FA /* FMPCollectionViewCell.h */,
+				58D9822F201152BC00C8A0FA /* FMPCollectionViewCell.m */,
+			);
+			path = "New Group1";
+			sourceTree = "<group>";
+		};
 		58D981A4200FCAB500C8A0FA = {
 			isa = PBXGroup;
 			children = (
@@ -162,22 +241,15 @@
 		58D981AF200FCAB500C8A0FA /* FaceMosh */ = {
 			isa = PBXGroup;
 			children = (
+				58B4DE1D20324B0A009EF15E /* FaceMosh.entitlements */,
 				58D981B0200FCAB500C8A0FA /* AppDelegate.h */,
 				58D981B1200FCAB500C8A0FA /* AppDelegate.m */,
-				58D981B3200FCAB500C8A0FA /* ViewController.h */,
-				58D981B4200FCAB500C8A0FA /* ViewController.m */,
-				58CDBAB3201E72CC0066D639 /* GalleryViewController.h */,
-				58CDBAB4201E72CC0066D639 /* GalleryViewController.m */,
-				58CDBAB9201E7E940066D639 /* ImageGalleryCVC.h */,
-				58CDBABA201E7E940066D639 /* ImageGalleryCVC.m */,
+				580AECE2203511250047A855 /* New Group2 */,
+				58B4DE1B202CEC19009EF15E /* New Group */,
+				58B4DE1A202CE901009EF15E /* Transition */,
 				58CDBAB6201E73850066D639 /* ImageStore.h */,
 				58CDBAB7201E73850066D639 /* ImageStore.m */,
-				58D982282010148B00C8A0FA /* OverlayPicker.h */,
-				58D982292010148B00C8A0FA /* OverlayPicker.m */,
-				58D9822B20101D4F00C8A0FA /* CVLayout.h */,
-				58D9822C20101D4F00C8A0FA /* CVLayout.m */,
-				58D9822E201152BC00C8A0FA /* FMPCollectionViewCell.h */,
-				58D9822F201152BC00C8A0FA /* FMPCollectionViewCell.m */,
+				58B4DE1C202E6BA0009EF15E /* New Group1 */,
 				58D98225201011B600C8A0FA /* Colorz.h */,
 				58D98226201011B700C8A0FA /* Colorz.m */,
 				58D981B6200FCAB500C8A0FA /* Main.storyboard */,
@@ -284,6 +356,11 @@
 					58D981AC200FCAB500C8A0FA = {
 						CreatedOnToolsVersion = 9.1;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 					58D981C4200FCAB600C8A0FA = {
 						CreatedOnToolsVersion = 9.1;
@@ -324,6 +401,7 @@
 			files = (
 				58D981BD200FCAB500C8A0FA /* LaunchScreen.storyboard in Resources */,
 				58D981BA200FCAB500C8A0FA /* Assets.xcassets in Resources */,
+				580AECDE203509CF0047A855 /* LandingViewController.xib in Resources */,
 				58D981B8200FCAB500C8A0FA /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -502,15 +580,22 @@
 			buildActionMask = 2147483647;
 			files = (
 				58D98227201011B700C8A0FA /* Colorz.m in Sources */,
+				580AECDD203509CF0047A855 /* LandingViewController.m in Sources */,
+				58B4DE16202CE876009EF15E /* ATransitionDelegate.m in Sources */,
+				58B4DE0F202CD60B009EF15E /* PhotosViewController.m in Sources */,
 				58CDBAB5201E72CC0066D639 /* GalleryViewController.m in Sources */,
+				580AECE120350CAA0047A855 /* TransitionAnimator.m in Sources */,
 				58D9822A2010148B00C8A0FA /* OverlayPicker.m in Sources */,
 				58CDBABB201E7E940066D639 /* ImageGalleryCVC.m in Sources */,
 				58D9822D20101D4F00C8A0FA /* CVLayout.m in Sources */,
+				58B4DE19202CE8FB009EF15E /* ATransitionAnimator.m in Sources */,
 				58D98230201152BD00C8A0FA /* FMPCollectionViewCell.m in Sources */,
 				58CDBAB8201E73850066D639 /* ImageStore.m in Sources */,
+				58B4DE12202CD84E009EF15E /* IDViewController.m in Sources */,
 				58D981B5200FCAB500C8A0FA /* ViewController.m in Sources */,
 				58D981C0200FCAB500C8A0FA /* main.m in Sources */,
 				58D981B2200FCAB500C8A0FA /* AppDelegate.m in Sources */,
+				587E4AC220351A350044658B /* TermsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -674,13 +759,14 @@
 			baseConfigurationReference = 8A8FC1D454506624C7B61DE7 /* Pods-FaceMosh.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = FaceMosh/FaceMosh.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 4J7SLT9CZE;
 				INFOPLIST_FILE = FaceMosh/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = dabkick.FaceMosh;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dabkick.d;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -689,13 +775,14 @@
 			baseConfigurationReference = A80DDEE6496D3CE891A7EE8F /* Pods-FaceMosh.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = FaceMosh/FaceMosh.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 4J7SLT9CZE;
 				INFOPLIST_FILE = FaceMosh/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = dabkick.FaceMosh;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dabkick.d;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

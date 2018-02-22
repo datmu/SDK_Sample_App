@@ -8,7 +8,7 @@ target 'FaceMosh' do
   # Pods for FaceMosh
   pod 'DabKickLiveSessionSdk'
   pod 'TwilioVideo'
-  
+
   target 'FaceMoshTests' do
     inherit! :search_paths
     # Pods for testing
